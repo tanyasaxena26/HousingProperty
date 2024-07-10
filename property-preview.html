@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Preview</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    
+    <div class="propertyForm">
+        
+        <form id="propertyForm">
+            <h2>Property Details</h2>
+            <label for="propertyFor">Property For:</label><br>
+            <select id="propertyForInput" name="propertyFor"><br><br>
+                <option value="Rent">Rent</option>
+                <option value="Sale">Sale</option></select><br><br>
+
+            <label for="propertyType">Property Type:</label><br>
+            <select id="propertyTypeInput" name="propertyType"><br><br>
+                <option value="Apartment">Apartment</option>
+                <option value="House">House</option>
+            </select><br><br>
+
+            <label for="bedrooms">Number of Bedrooms:</label><br>
+            <input type="number" id="bedroomsInput" name="bedrooms" min="1" required><br><br>
+
+            <label for="bathrooms">Number of Bathrooms:</label><br>
+            <input type="number" id="bathroomsInput" name="bathrooms" min="1" required><br><br>
+            
+            <h2>Property Location</h2>
+            <label for="address">Address:</label><br>
+            <input type="text" id="addressInput" name="address"><br><br>
+            
+            <h2>Property Features and Amenities</h2>
+            <label for="furnishing">Furnishing Status:</label><br>
+            <select id="furnishingInput" name="furnishing"><br><br>
+                <option value="Furnished">Furnished</option>
+                <option value="Semi-Furnished">Semi-Furnished</option>
+                <option value="Unfurnished">Unfurnished</option>
+            </select><br><br>
+
+            <label for="petsAllowed">Pets Allowed:</label><br>
+            <select id="petsAllowedInput" name="petsAllowed"><br><br>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br><br>
+
+            <label for="nonVegAllowed">Non-Veg Allowed:</label><br>
+            <select id="nonVegAllowedInput" name="nonVegAllowed"><br><br>
+            <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br><br>
+
+            <label for="gym">Gym:</label><br>
+            <select id="gymInput" name="gym"><br><br>
+            <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br><br>
+
+            <label for="swimmingPool">Swimming Pool:</label><br>
+            <select id="swimmingPoolInput" name="swimmingPool"><br><br>
+            <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br><br>
+
+            <h2>Property Price Details</h2>
+            <label for="price">Price:</label><br>
+            <input type="number" id="priceInput" name="price" min="0"><br><br>
+
+            <label for="maintenanceCharges">Maintenance Charges:</label><br>
+            <input type="number" id="maintenanceChargesInput" name="maintenanceCharges" min="0"><br><br>
+            
+            <h2>Property Photos</h2>
+            <label for="photos">Upload Photos:</label>
+            <input type="file" id="photos" name="photos" accept="image/*" multiple required><br><br>
+
+            <button type="button" onclick="displayPropertyDetails()">Submit</button><br><br>
+        </form>
+    </div>
+    <br><br><br><br>
+
+    <div class="property-preview">
+        <section class="property-details">
+            <h2>Property Details</h2>
+            <div class="detail-item">
+                <span class="label">Property For:</span>
+                <span class="value" id="propertyFor"></span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Property Type:</span>
+                <span class="value" id="propertyType"></span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Number of Bedrooms:</span>
+                <span class="value" id="bedrooms"></span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Number of Bathrooms:</span>
+                <span class="value" id="bathrooms"></span>
+            </div>
+        </section>
+
+        <section class="property-location">
+            <h2>Property Location</h2>
+            <div id="map"></div>
+            <div class="detail-item">
+                <span class="label">Address:</span>
+                <span class="value" id="propertyAddress"></span>
+            </div>
+        </section>
+
+        <section class="property-features">
+            <h2>Property Features and Amenities</h2>
+            <div class="detail-item">
+                <span class="label">Furnishing Status:</span>
+                <span class="value" id="propertyFurnishing"></span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Pets Allowed:</span>
+                <span class="value" id="petsAllowed"></span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Non-Veg Allowed:</span>
+                <span class="value" id="nonVegAllowed"></span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Gym:</span>
+                <span class="value" id="gym"></span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Swimming Pool:</span>
+                <span class="value" id="swimmingPool"></span>
+            </div>
+        </section>
+
+        <section class="property-price">
+            <h2>Property Price Details</h2>
+            <div class="detail-item">
+                <span class="label">Price:</span>
+                <span class="value" id="propertyPrice"></span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Maintenance Charges:</span>
+                <span class="value" id="maintenanceCharges"></span>
+            </div>
+        </section>
+
+        <section class="property-photos">
+            <h2>Property Photos</h2>
+            <div class="photo-gallery">
+                <img src="path/to/photo1.jpg" alt="Property Photo">
+                
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function displayPropertyDetails() {
+            // Get form values
+            var propertyFor = document.getElementById("propertyForInput").value;
+            var propertyType = document.getElementById("propertyTypeInput").value;
+            var bedrooms = document.getElementById("bedroomsInput").value;
+            var bathrooms = document.getElementById("bathroomsInput").value;
+            var address = document.getElementById("addressInput").value;
+            var furnishing = document.getElementById("furnishingInput").value;
+            var petsAllowed = document.getElementById("petsAllowedInput").value;
+            var nonVegAllowed = document.getElementById("nonVegAllowedInput").value;
+            var gym = document.getElementById("gymInput").value;
+            var swimmingPool = document.getElementById("swimmingPoolInput").value;
+            var price = document.getElementById("priceInput").value;
+            var maintenanceCharges = document.getElementById("maintenanceChargesInput").value;
+
+            // Display entered details
+            document.getElementById("propertyFor").textContent = propertyFor;
+            document.getElementById("propertyType").textContent = propertyType;
+            document.getElementById("bedrooms").textContent = bedrooms;
+            document.getElementById("bathrooms").textContent = bathrooms;
+            document.getElementById("propertyAddress").textContent = address;
+            document.getElementById("propertyFurnishing").textContent = furnishing;
+            document.getElementById("petsAllowed").textContent = petsAllowed;
+            document.getElementById("nonVegAllowed").textContent = nonVegAllowed;
+            document.getElementById("gym").textContent = gym;
+            document.getElementById("swimmingPool").textContent = swimmingPool;
+            document.getElementById("propertyPrice").textContent = price;
+            document.getElementById("maintenanceCharges").textContent = maintenanceCharges;
+        }
+    </script>
+    <br><br><br><br><br>
+    <footer>
+        <p>&copy; 2024 Real Estate Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>

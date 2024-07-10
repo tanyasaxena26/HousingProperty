@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Listing Website</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="homeBtn">Home</a></li><br><br>
+                <li><a href="#" id="loginBtn">Login</a></li>
+                
+                <!-- Add more navigation items as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <!-- Your main content, property listing, etc. -->
+        <div id="loginPage" class="login-page">
+            <div class="login-form">
+                <h2>Login</h2>
+                <form>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Login</button>
+                   
+                    
+                </form>
+            </div>
+        </div>
+      
+    </main>
+
+    <script>
+        // Get elements
+const loginBtn = document.getElementById('loginBtn');
+const loginPage = document.getElementById('loginPage');
+
+
+// Event listener for login button click
+loginBtn.addEventListener('click', function() {
+    loginPage.style.display = 'flex'; // Show login page
+});
+
+
+// Close login page if clicked outside of the form
+loginPage.addEventListener('click', function(event) {
+    if (event.target === loginPage) {
+        loginPage.style.display = 'none'; // Hide login page
+    }
+});
+
+
+    </script>
+</body>
+</html>
